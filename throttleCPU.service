@@ -1,0 +1,7 @@
+Description=throttleCPU - needs config file /etc/throttleCPU.conf
+ 
+[Service]
+ExecStart=/usr/bin/throttleCPU
+ 
+[Install]
+WantedBy=default.target
