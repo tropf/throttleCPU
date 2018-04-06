@@ -8,8 +8,10 @@ DISCHARGE [VALUE]<br>
 CHARGE [VALUE]<br>
 REPEAT [VALUE]<br>
 Where DISCHARGE and CHARGE are Integer values presenting Hz.<br>
-REPEAT is an Integer value representing seconds.
-throttleCPU will check charging status every REPEAT-Seconds
+The Max CPU freq will be set to those values depending on the charging status<br>
+Use ```lscpu``` to get basic information about you CPU<br>
+REPEAT is an Integer value representing seconds.<br>
+throttleCPU will check charging status every REPEAT-Seconds<br>
 
 # BUILD
 ```git clone https://github.com/k4lipso/throttleCPU```<br>
