@@ -7,3 +7,5 @@ add_executable(throttleCPU
 )
 
 install(TARGETS throttleCPU DESTINATION /usr/bin/)
+install(FILES throttleCPU.service DESTINATION /etc/systemd/system/)
+install(FILES throttleCPU.conf DESTINATION /etc/)

@@ -18,14 +18,12 @@ std::map<std::string, unsigned int> readConfigFile(){
     {
         std::istringstream iss(line);
         iss >> key;
-        std::cout << "KEY: " << key << std::endl;
         iss >> value;
-        std::cout << "VALUE: " << value << std::endl;
         config[key] = value;
     }
 
-    if(config.size() == 0){
-        std::cout << "WARNING: EMPTY CONFIG" << std::endl;
+    if(config.size() != 3){
+        std::cout << "WARNING: REQUIRED CONFIG PARAMETER MISSING" << std::endl;
     }
     return config;
 }
@@ -44,8 +42,8 @@ bool isCharging(){
     std::string status;
     std::ifstream file("/sys/class/power_supply/AC/online");
     std::getline(file, status);
-    if(status == "1") return true;
-    return false;
+    if(status == "0") return false;
+    return true;
 }
 
 int main(int argc, char *argv[])
@@ -67,7 +65,7 @@ int main(int argc, char *argv[])
                 if(stateNow == true){
                     freq = chargeFreq;
                 }
-                std::cout << "SET CPU " << cpu << " TO "
+                std::cout << "Set CPU " << cpu << " to "
                     << freq << "Hz" << std::endl;
                 writeMaxCpuFreq(cpu, freq);
             }
