@@ -1,28 +1,58 @@
 # throttleCPU
-Set Max CPU Clock Speed on Laptops Depending on their charging status.
+Set max CPU clock speed on laptops depending on their charging status.
 
-Buying very cheap Batterys can result in voltage drops on full CPU load. So I had the problem that Compiling, Updating, or just starting a browser made my laptop turn of instantly. Throttling CPU Clock Speed prevents that problem.
+Buying very cheap batteries can result in voltage drops on full CPU load.
+So I had the problem that compiling, updating,
+or just starting a browser made my laptop turn off instantly.
+Throttling CPU clock speed prevents that problem.
 
-throttleCPU reads /etc/throttleCPU.conf and needs those parameters:<br>
-DISCHARGE [VALUE]<br>
-CHARGE [VALUE]<br>
-REPEAT [VALUE]<br>
-Where DISCHARGE and CHARGE are Integer values presenting Hz.<br>
-The Max CPU freq will be set to those values depending on the charging status<br>
-Use ```lscpu``` to get basic information about you CPU<br>
-REPEAT is an Integer value representing seconds.<br>
-throttleCPU will check charging status every REPEAT-Seconds<br>
+`throttleCPU` reads `/etc/throttleCPU.conf` and needs those parameters:
 
-# BUILD
-```git clone https://github.com/k4lipso/throttleCPU```<br>
-```cd throttleCPU```<br>
-```mkdir build; cd build```<br>
-```cmake ..```<br>
-```make```<br>
-```make install```<br>
+> **All values must be integers.**
 
-# USAGE
-```systemctl daemon-reload```<br>
-```systemctl start/enable throttleCPU```
+Parameter   | Description                                            | Unit
+---         | ---                                                    | ---
+`DISCHARGE` | CPU clock speed when the battery is discharging        | `Hz`
+`CHARGE`    | CPU clock speed when the battery is charging           | `Hz`
+`REPEAT`    | The charging status is checked every `REPEAT` seconds. | `s`
+
+(The example config)[throttleCPU.conf] (included with the source) contains this:
+
+```
+DISCHARGE 1000000
+CHARGE 3400000
+REPEAT 5
+```
+
+> Use `lscpu` to get basic information about you CPU.
+
+## Build
+```bash
+git clone https://github.com/k4lipso/throttleCPU
+cd throttleCPU
+mkdir build; cd build
+cmake ..
+make
+sudo make install
+```
+
+## Usage
+### Setup
+`throttleCPU` can be used like any other `systemd` service using `systemctl`.
+
+```bash
+systemctl daemon-reload
+systemctl start/enable throttleCPU.service
+```
+
+### Monitoring
+To see the latest action of `throttleCPU` use the `systemctl status` command:
+
+```
+systemctl status throttleCPU.service
+```
 
 Made on Archlinux, shoud work on other Distos too.
+
+## Github
+Find this project on [Github](https://github.com/k4lipso/throttleCPU)
