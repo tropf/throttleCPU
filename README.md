@@ -16,7 +16,7 @@ Parameter   | Description                                            | Unit
 `CHARGE`    | CPU clock speed when the battery is charging           | `Hz`
 `REPEAT`    | The charging status is checked every `REPEAT` seconds. | `s`
 
-(The example config)[throttleCPU.conf] (included with the source) contains this:
+[The example config](throttleCPU.conf) (included with the source) contains this:
 
 ```
 DISCHARGE 1000000
@@ -55,4 +55,4 @@ systemctl status throttleCPU.service
 Made on Archlinux, shoud work on other Distos too.
 
 ## Github
-Find this project on [Github](https://github.com/k4lipso/throttleCPU)
+Find this project on [Github](https://github.com/k4lipso/throttleCPU).
